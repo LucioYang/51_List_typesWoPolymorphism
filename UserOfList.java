@@ -32,7 +32,7 @@ public class UserOfList {
             System.out.println( "number of elements: " + list.size() );
         }
         System.out.println("result of expanded list: "
-             + list.size() + " elements:");
+						   + list.size() + " elements:");
         System.out.println( list + System.lineSeparator());
     }
 }

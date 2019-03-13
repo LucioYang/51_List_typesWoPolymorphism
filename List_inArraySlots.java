@@ -6,49 +6,59 @@
 
 public class List_inArraySlots {
 
-    private int[]    intElements;
-    private double[] doubleElements;
-    private String[] stringElements;
-    private int filledElements; // the number of elements in this list
+     private int[]    intElements;
+     private double[] doubleElements;
+     private String[] stringElements;
+     private int filledElements; // the number of elements in this list
 
-    /* type identifier for each element
+     /* type identifier for each element
        That is, typeOfElements[i] == 0 means element i is an integer;
                                      1 means element i is a double;
                                      2 means element i is a String.
         Optional extra education in programming (not comp sci):
             replace these "magic numbers" with an "enumerated type".
      */
-    private int[] typeOfElements;
+     private int[] typeOfElements;
 
-    private static final int INITIAL_CAPACITY = 10;
+     private static final int INITIAL_CAPACITY = 10;
 
-    /**
+     /**
       Construct an empty list with a small initial capacity.
      */
-    public List_inArraySlots() {
+     public List_inArraySlots() {
         intElements = new int[INITIAL_CAPACITY];
         doubleElements = new double[INITIAL_CAPACITY];
         stringElements = new String[INITIAL_CAPACITY];
         // filledElements is already initialized to 0.
         typeOfElements = new int[INITIAL_CAPACITY];
-    }
+     }
 
 
     /**
       @return the number of elements in this list
      */
-    public int size() {
+     public int size() {
         return filledElements;
-    }
+     }
 
 
      /**
        @return a string representation of this list,
        in [a,b,c,] format
       */
-    // public String toString() {
-    //     String ans = new String();
-    // }
+     public String toString() {
+        String ans = "[";
+		for (int i = 0; i < typeOfElements.length; i++) {
+			if (typeOfElements[i] == 0)
+				ans += intElements[i] + ", ";
+			else if (typeOfElements[i] == 1)
+				ans += doubleElements[i] + ", ";
+			else
+				ans += stringElements[i] + ", ";
+		}
+		ans += "]";
+		return ans;
+     }
 
 
     /**
@@ -104,4 +114,21 @@ public class List_inArraySlots {
             typeBigger[elemIndex] = typeOfElements[elemIndex];
         typeOfElements = typeBigger;
      }
+	 
+	public Element get(int index) {
+		Element ans = new Element();
+		if (typeOfElements[index] == 0) {
+			ans.intValue = intElements[index];
+			ans.type = 0;
+		}
+		else if (typeOfElements[index] == 1) {
+			ans.doubleValue = doubleElements[index];
+			ans.type = 1;
+		}
+		else {
+			ans.stringValue = stringElements[index];
+			ans.type = 2;
+		}
+		return ans;
+	}
 }
